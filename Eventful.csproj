@@ -1,0 +1,12 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\tModLoader.targets" />
+  <PropertyGroup>
+    <AssemblyName>Eventful</AssemblyName>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Music\" />
+    <Folder Include="Weapons\Whips\" />
+  </ItemGroup>
+</Project>

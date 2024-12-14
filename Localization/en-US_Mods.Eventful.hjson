@@ -1,0 +1,30 @@
+Items: {
+	MosquitoBand: {
+		DisplayName: Mosquito Band
+		Tooltip: Provides life regeneration and increases life by 5%
+	}
+
+	MosquitoSack: {
+		DisplayName: Mosquito Sack
+		Tooltip:
+			'''
+			Increases life by 5%
+			'Don't get Malaria!'
+			'''
+	}
+
+	MutatedHeart: {
+		DisplayName: Mutated Heart
+		Tooltip: Summons the Buried Barrage when used in the caverns
+	}
+}
+
+NPCs: {
+	MutantMosquito.DisplayName: Mutant Mosquito
+	MutantCentipedeBody.DisplayName: Mutant Centipede Body
+	MutantCentipedeHead.DisplayName: Mutant Centipede Head
+	MutantCentipedeTail.DisplayName: Mutant Centipede Tail
+	MutantMole.DisplayName: Mutant Mole
+	MutantBeetle.DisplayName: Mutant Beetle
+	MutantRat.DisplayName: Mutant Rat
+}
