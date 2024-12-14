@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Eventful.Items.Accessories;
 using Eventful.Invasions;
 using Eventful.Dusts;
-using System;
+using EasingLibrary;
+using Eventful.Items.Miscellaneous;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
@@ -92,48 +93,6 @@ namespace Eventful.Enemies.BuriedBarrage
                     NPC.frame.Y = 0;
                 }
             }
-
-
-            #region Frames
-            /*
-            if (NPC.frameCounter < 2)
-            {
-                NPC.frame.Y = frameHeight * 0;
-            }
-            else if (NPC.frameCounter < 4)
-            {
-                NPC.frame.Y = frameHeight * 1;
-            }
-            else if (NPC.frameCounter < 6)
-            {
-                NPC.frame.Y = frameHeight * 2;
-            }
-            else if (NPC.frameCounter < 8)
-            {
-                NPC.frame.Y = frameHeight * 3;
-            }
-            else if (NPC.frameCounter < 10)
-            {
-                NPC.frame.Y = frameHeight * 4;
-            }
-            else if (NPC.frameCounter < 12)
-            {
-                NPC.frame.Y = frameHeight * 5;
-            }
-            else if (NPC.frameCounter < 14)
-            {
-                NPC.frame.Y = frameHeight * 6;
-            }
-            else if (NPC.frameCounter < 16)
-            {
-                NPC.frame.Y = frameHeight * 7;
-            }
-            else
-            {
-                NPC.frameCounter = 0;
-            }
-            */
-            #endregion
         }
         
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -167,6 +126,8 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 50)); //5% drop rate
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
         }
 
         public override void OnKill()

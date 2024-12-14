@@ -9,4 +9,9 @@
     <Folder Include="Music\" />
     <Folder Include="Weapons\Whips\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EasingLibrary">
+      <HintPath>..\..\ModReader\EasingLibrary\EasingLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

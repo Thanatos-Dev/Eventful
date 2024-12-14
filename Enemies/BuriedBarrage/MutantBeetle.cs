@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Eventful.Items.Accessories;
 using Eventful.Invasions;
 using Eventful.Dusts;
+using Eventful.Items.Miscellaneous;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
@@ -81,6 +82,11 @@ namespace Eventful.Enemies.BuriedBarrage
                 }
             }
             #endregion
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
         }
     }
 }
