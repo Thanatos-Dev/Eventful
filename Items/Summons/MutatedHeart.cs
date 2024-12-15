@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.GameContent.Creative;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Eventful.Invasions;
-using Terraria.Localization;
+﻿using Eventful.Invasions;
 using Microsoft.Xna.Framework;
-using Eventful.Miscellaneous;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Eventful.Items.Summons
 {
@@ -28,7 +24,7 @@ namespace Eventful.Items.Summons
             Item.rare = ItemRarityID.Blue;
             Item.noMelee = true;
             Item.consumable = true;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.autoReuse = false;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = Item.useAnimation = 45;

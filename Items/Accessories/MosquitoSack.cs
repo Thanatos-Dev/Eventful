@@ -7,8 +7,6 @@ namespace Eventful.Items.Accessories
 {
     public class MosquitoSack : ModItem
     {
-        bool isEquipped = true;
-        
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
