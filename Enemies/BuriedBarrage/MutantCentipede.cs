@@ -1,15 +1,11 @@
-﻿using Terraria;
+﻿using Eventful.Invasions;
+using Eventful.Items.Miscellaneous;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Bestiary;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Eventful.Items.Accessories;
-using Eventful.Invasions;
-using Terraria.DataStructures;
-using System.IO;
-using Eventful.Items.Miscellaneous;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
@@ -20,7 +16,6 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void SetDefaults()
         {
-            // Head is 10 defense, body 20, tail 30.
             NPC.CloneDefaults(NPCID.DiggerHead);
             NPC.aiStyle = -1;
 
@@ -48,7 +43,7 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void AI()
         {
             #region Lighting
-            Lighting.AddLight(NPC.Center, 0.25f, 0.25f, 0.25f);
+            Lighting.AddLight(NPC.Center, 0.15f, 0.15f, 0.15f);
             #endregion
         }
 
@@ -80,13 +75,11 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
         }
 
         public override void Init()
         {
-            // Set the segment variance
-            // If you want the segment length to be constant, set these two properties to the same value
             MinSegmentLength = 8;
             MaxSegmentLength = 12;
 
@@ -95,7 +88,6 @@ namespace Eventful.Enemies.BuriedBarrage
 
         internal static void CommonWormInit(Worm worm)
         {
-            // These two properties handle the movement of the worm
             worm.MoveSpeed = 4.5f;
             worm.Acceleration = 0.045f;
         }
@@ -107,7 +99,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+                Hide = true //Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 
@@ -139,10 +131,11 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void AI()
         {
             #region Lighting
-            Lighting.AddLight(NPC.Center, 0.25f, 0.25f, 0.25f);
+            Lighting.AddLight(NPC.Center, 0.15f, 0.15f, 0.15f);
             #endregion
         }
 
+        #region Random Body Sprite
         public override void OnSpawn(IEntitySource source)
         {
             NPC.frameCounter = Main.rand.Next(3);
@@ -152,15 +145,16 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPC.frame.Y = (int)NPC.frameCounter * frameHeight;
         }
+        #endregion
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            #region Gore
             if (NPC.life <= 0)
             {
-                #region Gore
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantCentipedeBodyGore").Type, NPC.scale);
-                #endregion
             }
+            #endregion
         }
 
         public override void Init()
@@ -175,7 +169,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+                Hide = true //Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
         }
@@ -205,18 +199,18 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void AI()
         {
             #region Lighting
-            Lighting.AddLight(NPC.Center, 0.25f, 0.25f, 0.25f);
+            Lighting.AddLight(NPC.Center, 0.15f, 0.15f, 0.15f);
             #endregion
         }
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            #region Gore
             if (NPC.life <= 0)
             {
-                #region Gore
                 Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantCentipedeTailGore").Type, NPC.scale);
-                #endregion
             }
+            #endregion
         }
 
         public override void Init()

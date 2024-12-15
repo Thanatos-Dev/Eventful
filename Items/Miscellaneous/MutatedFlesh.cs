@@ -12,7 +12,7 @@ namespace Eventful.Items.Miscellaneous
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 100;
+            Item.ResearchUnlockCount = 50;
         }
 
         public override void SetDefaults()

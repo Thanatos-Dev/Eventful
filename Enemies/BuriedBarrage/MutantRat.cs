@@ -1,44 +1,68 @@
-﻿using Terraria;
+﻿using Eventful.Dusts;
+using Eventful.Invasions;
+using Eventful.Items.Miscellaneous;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Eventful.Items.Accessories;
-using Eventful.Invasions;
-using Eventful.Dusts;
-using Eventful.Items.Miscellaneous;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantRat : ModNPC
     {
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[NPC.type] = 5;
+        }
+
         public override void SetDefaults()
         {
-            NPC.width = 40;
+            NPC.width = 76;
             NPC.height = 30;
             NPC.damage = 4;
-            NPC.lifeMax = 35;
+            NPC.lifeMax = 25;
             NPC.defense = 3;
             NPC.knockBackResist = 0.35f;
             NPC.value = 50;
             NPC.aiStyle = NPCAIStyleID.Snowman;
 
             #region Audio pitch variance
-            NPC.HitSound = SoundID.NPCHit26 with
+            NPC.HitSound = SoundID.NPCHit1 with
             {
                 PitchVariance = 0.25f
             };
-            NPC.DeathSound = SoundID.NPCDeath29 with
+            NPC.DeathSound = SoundID.NPCDeath4 with
             {
                 PitchVariance = 0.25f
             };
             #endregion
         }
 
+        #region Animation
+        public override void FindFrame(int frameHeight)
+        {
+            int frameSpeed = (int)Math.Clamp((10 / Math.Max(1, Math.Abs(NPC.velocity.X * 1.25f))), 2, 999);
+
+            NPC.frameCounter++;
+
+            if (NPC.frameCounter >= frameSpeed)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y += frameHeight;
+
+                if (NPC.frame.Y >= Main.npcFrameCount[NPC.type] * frameHeight)
+                {
+                    NPC.frame.Y = 0;
+                }
+            }
+        }
+        #endregion
+
         public override void AI()
         {
-            NPC.spriteDirection = NPC.direction;
+            NPC.spriteDirection = -NPC.direction;
 
             #region Dust
             if (Main.rand.NextBool(3))
@@ -51,8 +75,8 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void OnKill()
         {
             #region Gore
-            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantMoleGore1").Type, NPC.scale);
-            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantMoleGore2").Type, NPC.scale);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantRatGore1").Type, NPC.scale);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantRatGore2").Type, NPC.scale);
             #endregion
 
             #region Dust
@@ -86,7 +110,7 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
         }
     }
 }

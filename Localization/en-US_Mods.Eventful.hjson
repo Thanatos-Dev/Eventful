@@ -17,6 +17,11 @@ Items: {
 		DisplayName: Mutated Heart
 		Tooltip: Summons the Buried Barrage when used in the caverns
 	}
+
+	MutatedFlesh: {
+		DisplayName: Mutated Flesh
+		Tooltip: ""
+	}
 }
 
 NPCs: {

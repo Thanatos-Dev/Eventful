@@ -1,14 +1,13 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
+﻿using Eventful.Dusts;
+using Eventful.Invasions;
+using Eventful.Items.Accessories;
+using Eventful.Items.Miscellaneous;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Eventful.Items.Accessories;
-using Eventful.Invasions;
-using Eventful.Dusts;
-using EasingLibrary;
-using Eventful.Items.Miscellaneous;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
@@ -18,7 +17,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             Main.npcFrameCount[NPC.type] = 8;
 
-            NPCID.Sets.TrailCacheLength[NPC.type] = 6;
+            NPCID.Sets.TrailCacheLength[NPC.type] = 8;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
         }
 
@@ -48,35 +47,7 @@ namespace Eventful.Enemies.BuriedBarrage
             #endregion
         }
 
-        public override void AI()
-        {
-            #region Direction
-            NPC.TargetClosest(true);
-            NPC.spriteDirection = NPC.direction;
-            #endregion
-
-            #region Rotation
-            NPC.rotation = NPC.velocity.X * 0.1f;
-            #endregion
-
-            #region Variation
-            NPC.oldVelocity *= -NPC.scale; //Smaller = faster, bigger = slower
-            #endregion
-
-            #region Dust
-            if (Main.rand.NextBool(2))
-            {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<MutantDust>(), 0, 10, 150, default, 1);
-            }
-            #endregion
-
-            #region Lighting
-            Lighting.AddLight(NPC.Center, 0.25f, 0.25f, 0.25f);
-            #endregion
-
-            base.AI();
-        }
-
+        #region Animation
         public override void FindFrame(int frameHeight)
         {
             int frameSpeed = 5;
@@ -93,6 +64,26 @@ namespace Eventful.Enemies.BuriedBarrage
                     NPC.frame.Y = 0;
                 }
             }
+        }
+        #endregion
+
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+            NPC.spriteDirection = NPC.direction;
+
+            NPC.rotation = NPC.velocity.X * 0.1f;
+
+            Lighting.AddLight(NPC.Center, 0.25f, 0.25f, 0.25f);
+
+            #region Dust
+            if (Main.rand.NextBool(2))
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<MutantDust>(), 0, 10, 150, default, 1);
+            }
+            #endregion
+
+            base.AI();
         }
         
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -114,7 +105,7 @@ namespace Eventful.Enemies.BuriedBarrage
             for (int k = 0; k < NPC.oldPos.Length; k += 2)
             {
                 Vector2 drawPos = (NPC.oldPos[k] - Main.screenPosition) + origin + new Vector2(0, NPC.gfxOffY);
-                Color color = NPC.GetAlpha(drawColor * 0.25f) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
+                Color color = NPC.GetAlpha(drawColor * 0.3f) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
 
                 Main.spriteBatch.Draw(texture, drawPos, sourceRectangle, color, NPC.rotation, origin, NPC.scale, spriteEffects, 0);
             }
@@ -125,9 +116,9 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 50)); //5% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 10/100)); //10% drop rate
         }
 
         public override void OnKill()

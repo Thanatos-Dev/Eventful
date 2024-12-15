@@ -1,26 +1,29 @@
-﻿using Terraria;
+﻿using Eventful.Dusts;
+using Eventful.Invasions;
+using Eventful.Items.Miscellaneous;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Eventful.Items.Accessories;
-using Eventful.Invasions;
-using Eventful.Dusts;
-using Eventful.Items.Miscellaneous;
 
 namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantMole : ModNPC
     {
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[NPC.type] = 8;
+        }
+
         public override void SetDefaults()
         {
-            NPC.width = 34;
-            NPC.height = 44;
+            NPC.width = 42;
+            NPC.height = 46;
             NPC.damage = 8;
             NPC.lifeMax = 35;
-            NPC.defense = 8;
-            NPC.knockBackResist = 0.25f;
+            NPC.defense = 12;
+            NPC.knockBackResist = 0.35f;
             NPC.value = 50;
             NPC.aiStyle = NPCAIStyleID.Fighter;
 
@@ -35,6 +38,26 @@ namespace Eventful.Enemies.BuriedBarrage
             };
             #endregion
         }
+
+        #region Animation
+        public override void FindFrame(int frameHeight)
+        {
+            int frameSpeed = 5;
+
+            NPC.frameCounter++;
+
+            if (NPC.frameCounter >= frameSpeed)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y += frameHeight;
+
+                if (NPC.frame.Y >= Main.npcFrameCount[NPC.type] * frameHeight)
+                {
+                    NPC.frame.Y = 0;
+                }
+            }
+        }
+        #endregion
 
         public override void AI()
         {
@@ -86,7 +109,7 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 5)); //100% drop rate, 1-5
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
         }
     }
 }
