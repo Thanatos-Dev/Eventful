@@ -1,9 +1,11 @@
 ﻿using Eventful.Dusts;
 using Eventful.Invasions;
 using Eventful.Items.Miscellaneous;
+using Eventful.Vanity;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,9 +14,27 @@ namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantRat : ModNPC
     {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
+            });
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
+
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            { // Influences how the NPC looks in the Bestiary
+                Scale = 0.75f,
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
 
         public override void SetDefaults()
@@ -25,7 +45,7 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.lifeMax = 25;
             NPC.defense = 3;
             NPC.knockBackResist = 0.35f;
-            NPC.value = 50;
+            NPC.value = 300;
             NPC.aiStyle = NPCAIStyleID.Snowman;
 
             #region Audio pitch variance
@@ -111,6 +131,7 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 100)); //1% drop rate
         }
     }
 }

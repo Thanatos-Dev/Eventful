@@ -3,6 +3,7 @@ using Eventful.Invasions;
 using Eventful.Items.Miscellaneous;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +12,18 @@ namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantMole : ModNPC
     {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
+            });
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 8;
@@ -24,7 +37,7 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.lifeMax = 35;
             NPC.defense = 12;
             NPC.knockBackResist = 0.35f;
-            NPC.value = 50;
+            NPC.value = 400;
             NPC.aiStyle = NPCAIStyleID.Fighter;
 
             #region Audio pitch variance

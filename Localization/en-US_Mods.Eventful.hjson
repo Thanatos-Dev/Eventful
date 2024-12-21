@@ -22,14 +22,93 @@ Items: {
 		DisplayName: Mutated Flesh
 		Tooltip: ""
 	}
+
+	CentipedeSnapper: {
+		DisplayName: Centipede Snapper
+		Tooltip:
+			'''
+			{$CommonItemTooltip.SummonTagDamage}
+			{$CommonItemTooltip.Whips}
+			'''
+	}
+
+	MutantHelmet: {
+		DisplayName: Mutant Helmet
+		Tooltip: ""
+		SetBonus: Grants immunity to Poison
+	}
+
+	MutantBreastplate: {
+		DisplayName: Mutant Breastplate
+		Tooltip: ""
+	}
+
+	MutantLeggings: {
+		DisplayName: Mutant Leggings
+		Tooltip: ""
+	}
+
+	MouseEars: {
+		DisplayName: Mouse Ears
+		Tooltip: ""
+	}
+
+	MoleDiggingClaw: {
+		DisplayName: Mole Digging Claw
+		Tooltip: ""
+	}
+
+	ClearSkiesForecast: {
+		DisplayName: Clear Skies Forecast
+		Tooltip: Disables the rain
+	}
+
+	RainForecast: {
+		DisplayName: Rain Forecast
+		Tooltip: Enables the rain
+	}
+
+	CalmWindsForecast: {
+		DisplayName: Calm Winds Forecast
+		Tooltip: Disables a windy day
+	}
+
+	WindForecast: {
+		DisplayName: Wind Forecast
+		Tooltip: Enables a windy day
+	}
+
+	ThunderstormForecast: {
+		DisplayName: Thunderstorm Forecast
+		Tooltip: Enables a thunderstorm
+	}
+
+	CloudyForecast: {
+		DisplayName: Cloudy Forecast
+		Tooltip: Disables a sunny day
+	}
+
+	SunnyForecast: {
+		DisplayName: Sunny Forecast
+		Tooltip: Enables a sunny day
+	}
 }
 
 NPCs: {
 	MutantMosquito.DisplayName: Mutant Mosquito
 	MutantCentipedeBody.DisplayName: Mutant Centipede Body
-	MutantCentipedeHead.DisplayName: Mutant Centipede Head
+	MutantCentipedeHead.DisplayName: Mutant Centipede
 	MutantCentipedeTail.DisplayName: Mutant Centipede Tail
 	MutantMole.DisplayName: Mutant Mole
 	MutantBeetle.DisplayName: Mutant Beetle
 	MutantRat.DisplayName: Mutant Rat
+}
+
+Projectiles.CentipedeSnapperProjectile.DisplayName: Centipede Snapper Projectile
+
+Buffs: {
+	SummonTagDamage: {
+		DisplayName: Summon Tag Damage
+		Description: Mods.Eventful.Buffs.SummonTagDamage.Description
+	}
 }

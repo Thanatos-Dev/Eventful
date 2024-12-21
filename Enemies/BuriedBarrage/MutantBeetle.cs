@@ -4,6 +4,7 @@ using Eventful.Items.Miscellaneous;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +13,18 @@ namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantBeetle : ModNPC
     {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
+            });
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 4;
@@ -28,7 +41,7 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.lifeMax = 25;
             NPC.defense = 8;
             NPC.knockBackResist = 0.5f;
-            NPC.value = 50;
+            NPC.value = 200;
             NPC.aiStyle = NPCAIStyleID.Bat;
 
             #region Audio pitch variance

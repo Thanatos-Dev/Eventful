@@ -1,8 +1,10 @@
 ﻿using Eventful.Invasions;
 using Eventful.Items.Miscellaneous;
+using Eventful.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +15,28 @@ namespace Eventful.Enemies.BuriedBarrage
     {
         public override int BodyType => ModContent.NPCType<MutantCentipedeBody>();
         public override int TailType => ModContent.NPCType<MutantCentipedeTail>();
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
+            });
+        }
+
+        public override void SetStaticDefaults()
+        {
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            { // Influences how the NPC looks in the Bestiary
+                CustomTexturePath = "Eventful/Enemies/BuriedBarrage/MutantCentipedeBestiary", // If the NPC is multiple parts like a worm, a custom texture for the Bestiary is encouraged.
+                Scale = 0.5f,
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+        }
 
         public override void SetDefaults()
         {
@@ -26,7 +50,7 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.damage = 6;
             NPC.lifeMax = 35;
             NPC.defense = 0;
-            NPC.value = 50;
+            NPC.value = 400;
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
@@ -76,6 +100,8 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CentipedeSnapper>(), 16)); //6.25% drop rate
         }
 
         public override void Init()

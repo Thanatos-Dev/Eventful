@@ -7,7 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Music\" />
-    <Folder Include="Weapons\Whips\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EasingLibrary">

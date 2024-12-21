@@ -5,6 +5,7 @@ using Eventful.Items.Miscellaneous;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,12 +14,30 @@ namespace Eventful.Enemies.BuriedBarrage
 {
     public class MutantMosquito : ModNPC
     {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
+            });
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 8;
 
             NPCID.Sets.TrailCacheLength[NPC.type] = 8;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
+
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            { // Influences how the NPC looks in the Bestiary
+                Scale = 0.85f,
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
 
         public override void SetDefaults()
@@ -30,7 +49,7 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.lifeMax = 25;
             NPC.defense = 4;
             NPC.knockBackResist = 0.4f;
-            NPC.value = 50;
+            NPC.value = 200;
             NPC.noGravity = true;
             NPC.noTileCollide = false;
             NPC.aiStyle = NPCAIStyleID.FlyingFish;
@@ -118,7 +137,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 10/100)); //10% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 16)); //6.25% drop rate
         }
 
         public override void OnKill()

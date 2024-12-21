@@ -15,7 +15,7 @@ namespace Eventful.Invasions
         #region Variables
         public static bool isActive = false;
         public static int killCount = 0;
-        public static int killsNeeded = 10;
+        public static int killsNeeded = 75;
 
         public static List<int> invasionEnemies = new List<int>()
         {
@@ -63,7 +63,7 @@ namespace Eventful.Invasions
 
         public override void PreUpdateWorld()
         {
-            if (killCount == killsNeeded)
+            if (killCount > killsNeeded - 1)
             {
                 isActive = false;
 
@@ -85,27 +85,6 @@ namespace Eventful.Invasions
                 killCount = 0;
             }
         }
-
-        public override void OnWorldLoad()
-        {
-            if (isActive == true)
-            {
-                #region Chat Message
-                if (Main.netMode == NetmodeID.Server)
-                    NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-                string key = "The Buried Barrage is invading the caverns!";
-                Color messageColor = new Color(175, 75, 255);
-                if (Main.netMode == NetmodeID.Server) // Server
-                {
-                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), messageColor);
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                {
-                    Main.NewText(Language.GetTextValue(key), messageColor);
-                }
-                #endregion
-            }
-        }
     }
 
     public class BuriedBarrageSpawnRates : GlobalNPC
@@ -118,7 +97,7 @@ namespace Eventful.Invasions
                 maxSpawns = 50;
             }
         }
-
+        
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (BuriedBarrageInvasion.isActive == true && spawnInfo.Player.ZoneNormalCaverns == true)
@@ -126,15 +105,15 @@ namespace Eventful.Invasions
                 #region Spawn Pool
                 //Make all spawn chances equal 100
 
-                pool.Add(ModContent.NPCType<MutantMosquito>(), 23);
+                pool.Add(ModContent.NPCType<MutantMosquito>(), 22);
 
-                pool.Add(ModContent.NPCType<MutantCentipedeHead>(), 8);
+                pool.Add(ModContent.NPCType<MutantCentipedeHead>(), 12);
 
-                pool.Add(ModContent.NPCType<MutantMole>(), 23);
+                pool.Add(ModContent.NPCType<MutantMole>(), 22);
 
-                pool.Add(ModContent.NPCType<MutantBeetle>(), 23);
+                pool.Add(ModContent.NPCType<MutantBeetle>(), 22);
 
-                pool.Add(ModContent.NPCType<MutantRat>(), 23);
+                pool.Add(ModContent.NPCType<MutantRat>(), 22);
                 #endregion
 
                 for (int type = 0; type < NPCLoader.NPCCount; type++)

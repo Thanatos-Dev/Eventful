@@ -1,16 +1,13 @@
-﻿using Eventful.Invasions;
-using Microsoft.Xna.Framework;
-using System;
-using System.Linq;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Eventful.Items.Summons
+namespace Eventful.Items.WeatherToggles
 {
-    public class MutatedHeart : ModItem
+    public class CalmWindsForecast : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,8 +16,8 @@ namespace Eventful.Items.Summons
 
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 26;
+            Item.width = 32;
+            Item.height = 32;
             Item.rare = ItemRarityID.Blue;
             Item.noMelee = true;
             Item.consumable = true;
@@ -28,35 +25,33 @@ namespace Eventful.Items.Summons
             Item.autoReuse = false;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = Item.useAnimation = 45;
-            Item.UseSound = SoundID.Roar;
+            Item.UseSound = SoundID.Item4;
         }
 
         public override bool CanUseItem(Player player)
         {
-            if (BuriedBarrageInvasion.isActive == true)
+            if (Main.windSpeedTarget >= 0.8f || Main.windSpeedTarget <= -0.8f)
             {
-                return false;
+                return true;
             }
 
-            if (player.ZoneNormalCaverns == false)
-            {
-                return false;
-            }
-
-            return true;
+            return false;
         }
 
         public override bool? UseItem(Player player)
         {
-            BuriedBarrageInvasion.killsNeeded += 25 * (Main.player.Where(p => p.active).Count() - 1); //Adds 25 enemies for each player
+            Main.windSpeedTarget = Main.windSpeedCurrent = 0;
 
-            BuriedBarrageInvasion.isActive = true;
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
 
             #region Chat Message
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
-            string key = "The Buried Barrage is invading the caverns!";
-            Color messageColor = new Color(175, 75, 255);
+            string key = "The wind has calmed!";
+            Color messageColor = new Color(50, 255, 130);
             if (Main.netMode == NetmodeID.Server) // Server
             {
                 Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), messageColor);
