@@ -2,6 +2,7 @@
 using Eventful.Invasions;
 using Eventful.Items.Miscellaneous;
 using Eventful.Vanity;
+using Eventful.Weapons;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -16,12 +17,10 @@ namespace Eventful.Enemies.BuriedBarrage
     {
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-                                // Sets the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
             });
         }
@@ -132,6 +131,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 100)); //1% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RatStaff>(), 16)); //6.25% drop rate
         }
     }
 }

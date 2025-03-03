@@ -17,15 +17,28 @@ namespace Eventful.Items.WeatherToggles
         public override void SetDefaults()
         {
             Item.width = 32;
-            Item.height = 32;
+            Item.height = 42;
+            Item.scale = 0.75f;
             Item.rare = ItemRarityID.Blue;
             Item.noMelee = true;
             Item.consumable = true;
             Item.maxStack = Item.CommonMaxStack;
             Item.autoReuse = false;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.useTime = Item.useAnimation = 45;
-            Item.UseSound = SoundID.Item4;
+            Item.holdStyle = ItemHoldStyleID.HoldFront;
+            Item.useTime = Item.useAnimation = 30;
+            Item.UseSound = SoundID.Item92;
+            Item.value = Item.buyPrice(gold: 1);
+        }
+
+        public override void UseStyle(Player player, Rectangle heldItemFrame)
+        {
+            player.itemLocation += new Vector2(0, -7.5f);
+        }
+
+        public override void HoldStyle(Player player, Rectangle heldItemFrame)
+        {
+            player.itemLocation += new Vector2(-15 * player.direction, 5);
         }
 
         public override bool CanUseItem(Player player)

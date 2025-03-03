@@ -1,17 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Eventful.Buffs;
+using Eventful.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.RGB;
-using Terraria.GameContent.Shaders;
-using Terraria.Graphics.Shaders;
 using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using System;
 
 namespace Eventful.Events
 {
@@ -20,22 +18,39 @@ namespace Eventful.Events
         public static bool isActive = false;
 
         #region World Data
-        public override void SaveWorldData(TagCompound tag)
+        public override void ClearWorld()
         {
-            tag.Add("EventActive", isActive);
+            isActive = false;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
-            if (tag.ContainsKey("EventActive"))
-            {
-                isActive = tag.GetBool("EventActive");
-            }
+            isActive = tag.GetBool("EventActive");
+        }
+
+        public override void SaveWorldData(TagCompound tag)
+        {
+            tag["EventActive"] = isActive;
+        }
+        #endregion
+
+        #region Net
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(isActive);
+
+            NetMessage.SendData(MessageID.WorldData);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            isActive = reader.ReadBoolean();
         }
         #endregion
 
         public override void PreUpdateWorld()
         {
+            #region Random Spawning
             if (isActive == false && Main.dayTime == true && Main.time == 0)
             {
                 isActive = Main.rand.NextBool(1, 10);
@@ -62,10 +77,9 @@ namespace Eventful.Events
             {
                 isActive = false;
             }
-
+            #endregion
+            
             #region Heat Distortion
-            new Filter(new ScreenShaderData("HeatDistortion").UseImage("Images/Misc/Perlin"), EffectPriority.VeryHigh);
-
             if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.ZoneOverworldHeight == true)
             {
                 if (isActive == true)
@@ -80,6 +94,33 @@ namespace Eventful.Events
                 }
             }
             #endregion
+
+            #region Sun Texture
+            if (isActive == true)
+            {
+                TextureAssets.Sun = TextureAssets.Sun2;
+            }
+            else if (isActive == false)
+            {
+                TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
+            }
+            #endregion
+
+            #region Sweaty Debuff
+            if (isActive == true)
+            {
+                Main.LocalPlayer.AddBuff(ModContent.BuffType<Sweaty>(), 10);
+            }
+            else if (isActive == false)
+            {
+                Main.LocalPlayer.ClearBuff(ModContent.BuffType<Sweaty>());
+            }
+            #endregion
+        }
+
+        public override void Unload()
+        {
+            TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
         }
     }
 }

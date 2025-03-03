@@ -28,6 +28,12 @@ namespace Eventful.Invasions
         #endregion
 
         #region World Data
+        public override void ClearWorld()
+        {
+            isActive = false;
+            killCount = 0;
+        }
+
         public override void SaveWorldData(TagCompound tag)
         {
             tag.Add("InvasionActive", isActive);
@@ -53,16 +59,21 @@ namespace Eventful.Invasions
         public override void NetSend(BinaryWriter writer)
         {
             writer.Write(killCount);
+            writer.Write(isActive);
+
+            NetMessage.SendData(MessageID.WorldData);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             killCount = reader.ReadInt32();
+            isActive = reader.ReadBoolean();
         }
         #endregion
 
         public override void PreUpdateWorld()
         {
+            #region Complete Invasion
             if (killCount > killsNeeded - 1)
             {
                 isActive = false;
@@ -84,6 +95,7 @@ namespace Eventful.Invasions
 
                 killCount = 0;
             }
+            #endregion
         }
     }
 
@@ -93,7 +105,7 @@ namespace Eventful.Invasions
         {
             if (BuriedBarrageInvasion.isActive == true && player.ZoneNormalCaverns == true)
             {
-                spawnRate = 100;
+                spawnRate = 85;
                 maxSpawns = 50;
             }
         }

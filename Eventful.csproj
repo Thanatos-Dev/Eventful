@@ -6,6 +6,13 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <AdditionalFiles Remove="Gores\Miscellaneous\**" />
+    <Compile Remove="Gores\Miscellaneous\**" />
+    <EmbeddedResource Remove="Gores\Miscellaneous\**" />
+    <None Remove="Gores\Miscellaneous\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Gores\NPCs\Weather Man\" />
     <Folder Include="Music\" />
   </ItemGroup>
   <ItemGroup>

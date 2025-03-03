@@ -10,8 +10,9 @@ namespace Eventful.Items.Tools
     {
         public override void SetDefaults()
         {
-            Item.width = 40;
-            Item.height = 40;
+            Item.width = 28;
+            Item.height = 28;
+            Item.scale = 1.25f;
             Item.damage = 8;
             Item.knockBack = 3;
             Item.DamageType = DamageClass.Melee;

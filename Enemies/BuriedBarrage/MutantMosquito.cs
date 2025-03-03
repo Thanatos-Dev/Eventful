@@ -16,12 +16,10 @@ namespace Eventful.Enemies.BuriedBarrage
     {
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
 
-                                // Sets the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("Mutated from evolving underground, this creature is aggressive and will attack anyone in sight")
             });
         }

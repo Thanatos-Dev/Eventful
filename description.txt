@@ -12,10 +12,10 @@ Content:
 - ? Random events
 - ? Music tracks
 
-Development Team:
+Credits:
 - Thanatos
 - Doc
-- CrimsonCB
-
-Contributors:
+- Pil Works
+- Sprunolia
 - Dovahkick
+- CrimsonCB

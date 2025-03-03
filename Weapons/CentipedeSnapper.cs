@@ -19,6 +19,7 @@ namespace Eventful.Weapons
             Item.damage = 15;
             Item.knockBack = 1;
             Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(gold: 1, silver: 50);
 
             Item.shoot = ModContent.ProjectileType<CentipedeSnapperProjectile>();
             Item.shootSpeed = 8;

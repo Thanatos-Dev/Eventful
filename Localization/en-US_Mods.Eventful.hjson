@@ -50,7 +50,7 @@ Items: {
 
 	MouseEars: {
 		DisplayName: Mouse Ears
-		Tooltip: ""
+		Tooltip: "'I'm the mascot of a scummy corporation!'"
 	}
 
 	MoleDiggingClaw: {
@@ -60,7 +60,7 @@ Items: {
 
 	ClearSkiesForecast: {
 		DisplayName: Clear Skies Forecast
-		Tooltip: Disables the rain
+		Tooltip: Disables the rain/thunderstorm
 	}
 
 	RainForecast: {
@@ -92,6 +92,26 @@ Items: {
 		DisplayName: Sunny Forecast
 		Tooltip: Enables a sunny day
 	}
+
+	RatStaff: {
+		DisplayName: Rat Staff
+		Tooltip: Summons a group of rats on the ground
+	}
+
+	WaterBalloon: {
+		DisplayName: Water Balloon
+		Tooltip: "'Fun until you freeze it.'"
+	}
+
+	SunshineFragment: {
+		DisplayName: Sunshine Fragment
+		Tooltip: The essense of summer creatures
+	}
+
+	BeetleStaff: {
+		DisplayName: Beetle Staff
+		Tooltip: Summons a mutant beetle to fight for you
+	}
 }
 
 NPCs: {
@@ -102,13 +122,52 @@ NPCs: {
 	MutantMole.DisplayName: Mutant Mole
 	MutantBeetle.DisplayName: Mutant Beetle
 	MutantRat.DisplayName: Mutant Rat
+
+	Weatherman: {
+		DisplayName: Weatherman
+
+		TownNPCMood: {
+			Content: I'm pretty happy here!
+			NoHome: I need some shelter, preferably in the jungle.
+			FarFromHome: I gotta get back home before it rains!
+			LoveSpace: I can kick my feet back and enjoy the weather.
+			DislikeCrowded: It's a little crammed for me around here.
+			HateCrowded: There's way too many people around!
+			LikeBiome: I love when it rains here in the jungle. It's like a real Rainforest Cafe!
+			DislikeBiome: The desert is so dry! Not enough weather for my taste.
+			HateBiome: I hate not being able to experience the weather.
+			LoveNPC: When making my forecast devices, {NPCName} was such a good partner.
+			LikeNPC: I like how much {NPCName} appreciates the weather.
+			DislikeNPC: I think {NPCName} charges too much, I don't get paid enough for this!
+			HateNPC: I hate {NPCName}.
+			LikeNPC_Princess: I enjoy talking to {NPCName}, she reminds me of my daughter.
+			Princess_LovesNPC: I enjoy talking to {NPCName}, she reminds me of my daughter.
+		}
+	}
 }
 
-Projectiles.CentipedeSnapperProjectile.DisplayName: Centipede Snapper Projectile
+Projectiles: {
+	CentipedeSnapperProjectile.DisplayName: Centipede Snapper Projectile
+	RatStaffProjectile.DisplayName: Rat Staff Projectile
+	WaterBalloonProjectile.DisplayName: Water Balloon Projectile
+	BeetleStaffProjectile.DisplayName: Beetle Staff Projectile
+}
 
 Buffs: {
 	SummonTagDamage: {
 		DisplayName: Summon Tag Damage
-		Description: Mods.Eventful.Buffs.SummonTagDamage.Description
+		Description: Summon tag damage
+	}
+
+	Sweaty: {
+		DisplayName: Sweaty
+		Description: You are sweating
+	}
+
+	BeetleStaffMinionBuff: {
+		DisplayName: Beetle Staff Minion Buff
+		Description: Mods.Eventful.Buffs.BeetleStaffMinionBuff.Description
 	}
 }
+
+Conditions.IsSunnyDay: Mods.Eventful.Conditions.IsSunnyDay
