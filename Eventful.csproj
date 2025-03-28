@@ -13,6 +13,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Gores\NPCs\Weather Man\" />
+    <Folder Include="Gores\Sunny Day\Living Sunflower\" />
     <Folder Include="Music\" />
   </ItemGroup>
   <ItemGroup>

@@ -105,7 +105,7 @@ Items: {
 
 	SunshineFragment: {
 		DisplayName: Sunshine Fragment
-		Tooltip: The essense of summer creatures
+		Tooltip: "'The essense of summer creatures'"
 	}
 
 	BeetleStaff: {
@@ -116,9 +116,9 @@ Items: {
 
 NPCs: {
 	MutantMosquito.DisplayName: Mutant Mosquito
-	MutantCentipedeBody.DisplayName: Mutant Centipede Body
+	MutantCentipedeBody.DisplayName: Mutant Centipede
 	MutantCentipedeHead.DisplayName: Mutant Centipede
-	MutantCentipedeTail.DisplayName: Mutant Centipede Tail
+	MutantCentipedeTail.DisplayName: Mutant Centipede
 	MutantMole.DisplayName: Mutant Mole
 	MutantBeetle.DisplayName: Mutant Beetle
 	MutantRat.DisplayName: Mutant Rat
@@ -144,6 +144,8 @@ NPCs: {
 			Princess_LovesNPC: I enjoy talking to {NPCName}, she reminds me of my daughter.
 		}
 	}
+
+	LivingSunflower.DisplayName: Living Sunflower
 }
 
 Projectiles: {
@@ -165,8 +167,8 @@ Buffs: {
 	}
 
 	BeetleStaffMinionBuff: {
-		DisplayName: Beetle Staff Minion Buff
-		Description: Mods.Eventful.Buffs.BeetleStaffMinionBuff.Description
+		DisplayName: Mutant Beetle
+		Description: The mutant beetle will fight for you
 	}
 }
 

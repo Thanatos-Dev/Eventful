@@ -43,9 +43,9 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.width = 66;
             NPC.height = 40;
             NPC.scale = Main.rand.NextFloat(0.75f, 1.25f);
-            NPC.damage = 8;
-            NPC.lifeMax = 25;
-            NPC.defense = 4;
+            NPC.damage = 12;
+            NPC.lifeMax = 40;
+            NPC.defense = 3;
             NPC.knockBackResist = 0.4f;
             NPC.value = 200;
             NPC.noGravity = true;
@@ -135,7 +135,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 16)); //6.25% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 50)); //2% drop rate
         }
 
         public override void OnKill()

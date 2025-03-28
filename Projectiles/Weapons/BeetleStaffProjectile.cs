@@ -3,7 +3,6 @@ using Eventful.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +10,11 @@ namespace Eventful.Projectiles.Weapons
 {
     public class BeetleStaffProjectile : ModProjectile
     {
+        #region Variables
+        public static float insideTilesTimerMax = 30;
+        public static float insideTilesTimer = insideTilesTimerMax;
+        #endregion
+
         public override void SetStaticDefaults()
         {
             // Sets the amount of frames this minion has on its spritesheet
@@ -50,7 +54,7 @@ namespace Eventful.Projectiles.Weapons
             return true;
         }
 
-        // The AI of this minion is split into multiple methods to avoid bloat. This method just passes values between calls actual parts of the AI.
+        #region AI
         public override void AI()
         {
             Player owner = Main.player[Projectile.owner];
@@ -64,6 +68,21 @@ namespace Eventful.Projectiles.Weapons
             SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
             Visuals();
+
+            // Return if inside tiles too long
+            if (Collision.IsWorldPointSolid(Projectile.position, true))
+            {
+                insideTilesTimer--;
+
+                if (insideTilesTimer <= 0)
+                {
+                    // Return to player
+                }
+            }
+            else
+            {
+                insideTilesTimer = insideTilesTimerMax;
+            }
         }
 
         // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
@@ -141,18 +160,18 @@ namespace Eventful.Projectiles.Weapons
         private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
         {
             // Starting search distance
-            distanceFromTarget = 700f;
-            targetCenter = Projectile.position;
+            distanceFromTarget = 700;
+            targetCenter = Main.player[Projectile.owner].Center;
             foundTarget = false;
 
             // This code is required if your minion weapon has the targeting feature
             if (owner.HasMinionAttackTargetNPC)
             {
                 NPC npc = Main.npc[owner.MinionAttackTargetNPC];
-                float between = Vector2.Distance(npc.Center, Projectile.Center);
+                float between = Vector2.Distance(npc.Center, Main.player[Projectile.owner].Center);
 
                 // Reasonable distance away so it doesn't target across multiple screens
-                if (between < 2000f)
+                if (between < 2000)
                 {
                     distanceFromTarget = between;
                     targetCenter = npc.Center;
@@ -173,7 +192,7 @@ namespace Eventful.Projectiles.Weapons
                         bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
                         // Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
                         // The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
-                        bool closeThroughWall = between < 100f;
+                        bool closeThroughWall = between < 100;
 
                         if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall))
                         {
@@ -195,13 +214,13 @@ namespace Eventful.Projectiles.Weapons
         private void Movement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
         {
             // Default movement parameters (here for attacking)
-            float speed = 8f;
-            float inertia = 20f;
+            float speed = 8;
+            float inertia = 20;
 
             if (foundTarget)
             {
                 // Minion has a target: attack (here, fly towards the enemy)
-                if (distanceFromTarget > 40f)
+                if (distanceFromTarget > 40)
                 {
                     // The immediate range around the target (so it doesn't latch onto it when close)
                     Vector2 direction = targetCenter - Projectile.Center;
@@ -214,20 +233,20 @@ namespace Eventful.Projectiles.Weapons
             else
             {
                 // Minion doesn't have a target: return to player and idle
-                if (distanceToIdlePosition > 600f)
+                if (distanceToIdlePosition > 600)
                 {
                     // Speed up the minion if it's away from the player
-                    speed = 12f;
-                    inertia = 60f;
+                    speed = 12;
+                    inertia = 60;
                 }
                 else
                 {
                     // Slow down the minion if closer to the player
-                    speed = 4f;
-                    inertia = 80f;
+                    speed = 4;
+                    inertia = 80;
                 }
 
-                if (distanceToIdlePosition > 20f)
+                if (distanceToIdlePosition > 20)
                 {
                     // The immediate range around the player (when it passively floats about)
 
@@ -247,10 +266,10 @@ namespace Eventful.Projectiles.Weapons
 
         private void Visuals()
         {
-            // So it will lean slightly towards the direction it's moving
+            // Lean slightly towards the direction it's moving
             Projectile.rotation = Projectile.velocity.X * 0.05f;
 
-            // This is a simple "loop through all frames from top to bottom" animation
+            // Animation
             int frameSpeed = 5;
 
             Projectile.frameCounter++;
@@ -266,6 +285,7 @@ namespace Eventful.Projectiles.Weapons
                 }
             }
 
+            // Sprite direction
             Projectile.spriteDirection = -Projectile.direction;
 
             // Lighting
@@ -277,5 +297,6 @@ namespace Eventful.Projectiles.Weapons
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MutantDust>(), 0, 10, 150, default, 1);
             }
         }
+        #endregion
     }
 }

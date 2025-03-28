@@ -36,9 +36,9 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPC.width = 28;
             NPC.height = 24;
-            NPC.damage = 6;
+            NPC.damage = 10;
             NPC.lifeMax = 25;
-            NPC.defense = 8;
+            NPC.defense = 3;
             NPC.knockBackResist = 0.5f;
             NPC.value = 200;
             NPC.aiStyle = NPCAIStyleID.Bat;
@@ -156,7 +156,7 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BeetleStaff>(), 16)); //6.25% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BeetleStaff>(), 50)); //2% drop rate
         }
     }
 }

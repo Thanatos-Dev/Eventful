@@ -40,9 +40,9 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPC.width = 76;
             NPC.height = 30;
-            NPC.damage = 4;
-            NPC.lifeMax = 25;
-            NPC.defense = 3;
+            NPC.damage = 8;
+            NPC.lifeMax = 35;
+            NPC.defense = 4;
             NPC.knockBackResist = 0.35f;
             NPC.value = 300;
             NPC.aiStyle = NPCAIStyleID.Snowman;
@@ -130,8 +130,8 @@ namespace Eventful.Enemies.BuriedBarrage
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 100)); //1% drop rate
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RatStaff>(), 16)); //6.25% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 200)); //0.5% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RatStaff>(), 50)); //2% drop rate
         }
     }
 }

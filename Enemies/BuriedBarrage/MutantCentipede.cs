@@ -45,8 +45,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.height = 26;
             NPC.scale = 1.05f;
 
-            NPC.damage = 6;
-            NPC.lifeMax = 35;
+            NPC.damage = 8;
+            NPC.lifeMax = 30;
             NPC.defense = 0;
             NPC.value = 400;
 
@@ -99,7 +99,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CentipedeSnapper>(), 16)); //6.25% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CentipedeSnapper>(), 50)); //2% drop rate
         }
 
         public override void Init()
@@ -139,9 +139,9 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.height = 16;
             NPC.scale = 1.05f;
 
-            NPC.damage = 3;
-            NPC.lifeMax = 35;
-            NPC.defense = 3;
+            NPC.damage = 4;
+            NPC.lifeMax = 30;
+            NPC.defense = 4;
             NPC.value = 50;
 
             #region Audio pitch variance
@@ -207,8 +207,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.height = 26;
             NPC.scale = 1.05f;
 
-            NPC.damage = 3;
-            NPC.lifeMax = 35;
+            NPC.damage = 4;
+            NPC.lifeMax = 30;
             NPC.defense = 6;
             NPC.value = 50;
 

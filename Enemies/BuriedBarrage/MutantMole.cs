@@ -33,9 +33,9 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             NPC.width = 42;
             NPC.height = 46;
-            NPC.damage = 8;
-            NPC.lifeMax = 35;
-            NPC.defense = 12;
+            NPC.damage = 18;
+            NPC.lifeMax = 50;
+            NPC.defense = 8;
             NPC.knockBackResist = 0.35f;
             NPC.value = 400;
             NPC.aiStyle = NPCAIStyleID.Fighter;
@@ -124,7 +124,7 @@ namespace Eventful.Enemies.BuriedBarrage
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoleDiggingClaw>(), 16)); //6.25% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MoleDiggingClaw>(), 50)); //2% drop rate
         }
     }
 }
