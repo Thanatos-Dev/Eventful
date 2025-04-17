@@ -43,6 +43,10 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.value = 200;
             NPC.aiStyle = NPCAIStyleID.Bat;
 
+            SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
+
+            BannerItem = Mod.Find<ModItem>("MutantBeetleBanner").Type;
+
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
             {

@@ -123,4 +123,10 @@ namespace Eventful.Events
             TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
         }
     }
+
+    public class SunnyDayBiome : ModBiome
+    {
+        public override string BestiaryIcon => base.BestiaryIcon;
+        public override SceneEffectPriority Priority => SceneEffectPriority.Environment;
+    }
 }

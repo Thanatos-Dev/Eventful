@@ -50,6 +50,11 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.defense = 0;
             NPC.value = 400;
 
+            SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
+
+            Banner = Type;
+            BannerItem = Mod.Find<ModItem>("MutantCentipedeBanner").Type;
+
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
             {
@@ -144,6 +149,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.defense = 4;
             NPC.value = 50;
 
+            Banner = Mod.Find<ModItem>("MutantCentipedeBanner").Type;
+
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
             {
@@ -211,6 +218,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.lifeMax = 30;
             NPC.defense = 6;
             NPC.value = 50;
+
+            Banner = Mod.Find<ModItem>("MutantCentipedeBanner").Type;
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with

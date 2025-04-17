@@ -112,6 +112,31 @@ Items: {
 		DisplayName: Beetle Staff
 		Tooltip: Summons a mutant beetle to fight for you
 	}
+
+	MutantBeetleBanner: {
+		DisplayName: Mutant Beetle Banner
+		Tooltip: ""
+	}
+
+	MutantCentipedeBanner: {
+		DisplayName: Mutant Centipede Banner
+		Tooltip: ""
+	}
+
+	MutantMoleBanner: {
+		DisplayName: Mutant Mole Banner
+		Tooltip: ""
+	}
+
+	MutantMosquitoBanner: {
+		DisplayName: Mutant Mosquito Banner
+		Tooltip: ""
+	}
+
+	MutantRatBanner: {
+		DisplayName: Mutant Rat Banner
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -173,3 +198,15 @@ Buffs: {
 }
 
 Conditions.IsSunnyDay: Mods.Eventful.Conditions.IsSunnyDay
+
+Biomes: {
+	BuriedBarrageBiome: {
+		DisplayName: Buried Barrage
+		TownNPCDialogueName: the Buried Barrage
+	}
+
+	SunnyDayBiome: {
+		DisplayName: Sunny Day
+		TownNPCDialogueName: a Sunny Day
+	}
+}

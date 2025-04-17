@@ -52,6 +52,10 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.noTileCollide = false;
             NPC.aiStyle = NPCAIStyleID.FlyingFish;
 
+            SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
+
+            BannerItem = Mod.Find<ModItem>("MutantMosquitoBanner").Type;
+
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
             {

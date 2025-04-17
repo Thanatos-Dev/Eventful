@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Eventful.Weapons
 {
@@ -19,8 +21,8 @@ namespace Eventful.Weapons
 
         public override void SetDefaults()
         {
-            Item.width = 26;
-            Item.height = 30;
+            Item.width = 14;
+            Item.height = 16;
 
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 16;

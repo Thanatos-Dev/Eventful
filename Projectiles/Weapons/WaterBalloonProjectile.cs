@@ -11,9 +11,8 @@ namespace Eventful.Projectiles.Weapons
     {
         public override void SetDefaults()
         {
-            Projectile.width = 26;
-            Projectile.height = 30;
-            Projectile.scale = 0.65f;
+            Projectile.width = 14;
+            Projectile.height = 16;
 
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;

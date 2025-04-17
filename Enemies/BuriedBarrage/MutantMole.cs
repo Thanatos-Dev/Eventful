@@ -1,6 +1,5 @@
 ﻿using Eventful.Dusts;
 using Eventful.Invasions;
-using Eventful.Items.Accessories;
 using Eventful.Items.Miscellaneous;
 using Eventful.Items.Tools;
 using Microsoft.Xna.Framework;
@@ -39,6 +38,10 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.knockBackResist = 0.35f;
             NPC.value = 400;
             NPC.aiStyle = NPCAIStyleID.Fighter;
+
+            SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
+
+            BannerItem = Mod.Find<ModItem>("MutantMoleBanner").Type;
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit26 with

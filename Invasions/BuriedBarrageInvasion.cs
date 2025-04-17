@@ -138,4 +138,10 @@ namespace Eventful.Invasions
             }
         }
     }
+
+    public class BuriedBarrageBiome : ModBiome
+    {
+        public override string BestiaryIcon => base.BestiaryIcon;
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
+    }
 }

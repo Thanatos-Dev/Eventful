@@ -1,10 +1,8 @@
 ﻿using Eventful.Projectiles.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Eventful.Weapons
@@ -18,7 +16,7 @@ namespace Eventful.Weapons
 
             Item.mana = 30;
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 10;
+            Item.damage = 8;
             Item.knockBack = 0;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1, silver: 50);

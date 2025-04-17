@@ -1,5 +1,5 @@
 ﻿using Eventful.Dusts;
-using Eventful.Invasions;
+using Eventful.Events;
 using Eventful.Items.Miscellaneous;
 using Eventful.Weapons;
 using Microsoft.Xna.Framework;
@@ -40,6 +40,8 @@ namespace Eventful.Enemies.SunnyDay
             NPC.value = 50;
             NPC.aiStyle = NPCAIStyleID.Fighter;
             AIType = NPCID.GoblinScout;
+
+            SpawnModBiomes = [ModContent.GetInstance<SunnyDayBiome>().Type];
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit1 with
