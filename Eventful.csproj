@@ -20,5 +20,8 @@
     <Reference Include="EasingLibrary">
       <HintPath>..\..\ModReader\EasingLibrary\EasingLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Luminance">
+      <HintPath>Luminance.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

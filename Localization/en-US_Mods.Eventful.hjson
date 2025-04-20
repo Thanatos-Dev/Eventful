@@ -137,6 +137,11 @@ Items: {
 		DisplayName: Mutant Rat Banner
 		Tooltip: ""
 	}
+
+	LivingSunflowerBanner: {
+		DisplayName: Living Sunflower Banner
+		Tooltip: ""
+	}
 }
 
 NPCs: {

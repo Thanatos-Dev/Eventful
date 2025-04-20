@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReLogic.Utilities;
 
 namespace Eventful.Projectiles.Weapons
 {
@@ -12,7 +11,7 @@ namespace Eventful.Projectiles.Weapons
         public override void SetDefaults()
         {
             Projectile.width = 14;
-            Projectile.height = 16;
+            Projectile.height = 20;
 
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
