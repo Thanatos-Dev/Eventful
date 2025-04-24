@@ -104,6 +104,8 @@ namespace Eventful.Enemies.SunnyDay
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunshineFragment>(), 1, 1, 2)); //100% drop rate, 1-2
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WaterBalloon>(), 2, 5, 10)); //100% drop rate, 1-2
+
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bloomerang>(), 5)); //20% drop rate
         }
     }
 }

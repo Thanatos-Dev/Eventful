@@ -22,6 +22,7 @@ namespace Eventful.Weapons
             Item.knockBack = 3;
             Item.rare = ItemRarityID.White;
             Item.value = Item.sellPrice(copper: 10);
+            Item.maxStack = Item.CommonMaxStack;
 
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 25;
@@ -29,7 +30,6 @@ namespace Eventful.Weapons
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.consumable = true;
-            Item.maxStack = Item.CommonMaxStack;
 
             Item.shoot = ModContent.ProjectileType<WaterBalloonProjectile>();
             Item.shootSpeed = 11;

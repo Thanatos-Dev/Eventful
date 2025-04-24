@@ -142,6 +142,11 @@ Items: {
 		DisplayName: Living Sunflower Banner
 		Tooltip: ""
 	}
+
+	Bloomerang: {
+		DisplayName: Bloomerang
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -183,6 +188,7 @@ Projectiles: {
 	RatStaffProjectile.DisplayName: Rat Staff Projectile
 	WaterBalloonProjectile.DisplayName: Water Balloon Projectile
 	BeetleStaffProjectile.DisplayName: Beetle Staff Projectile
+	BloomerangProjectile.DisplayName: Bloomerang Projectile
 }
 
 Buffs: {
