@@ -147,6 +147,11 @@ Items: {
 		DisplayName: Bloomerang
 		Tooltip: ""
 	}
+
+	SunshineInABottleItem: {
+		DisplayName: Sunshine in a Bottle
+		Tooltip: Increases movement speed and reduces monster spawns when placed nearby
+	}
 }
 
 NPCs: {
@@ -221,3 +226,5 @@ Biomes: {
 		TownNPCDialogueName: a Sunny Day
 	}
 }
+
+Tiles.SunshineInABottle.MapEntry: Sunshine in a Bottle

@@ -54,6 +54,7 @@ namespace Eventful.Enemies.BuriedBarrage
 
             SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
 
+            Banner = Type;
             BannerItem = Mod.Find<ModItem>("MutantMosquitoBanner").Type;
 
             #region Audio pitch variance

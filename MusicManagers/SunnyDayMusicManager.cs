@@ -19,6 +19,6 @@ namespace Eventful.MusicManagers
             return false;
         }
 
-        public override int Music => MusicID.ConsoleMenu;
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Music/Daybreak");
     }
 }

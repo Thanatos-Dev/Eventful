@@ -49,8 +49,8 @@ namespace Eventful.Enemies.BuriedBarrage
 
             SpawnModBiomes = [ModContent.GetInstance<BuriedBarrageBiome>().Type];
 
+            Banner = Type;
             BannerItem = Mod.Find<ModItem>("MutantRatBanner").Type;
-            ItemID.Sets.KillsToBanner[BannerItem] = 5;
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit1 with
