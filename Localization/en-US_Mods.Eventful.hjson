@@ -152,6 +152,11 @@ Items: {
 		DisplayName: Sunshine in a Bottle
 		Tooltip: Increases movement speed and reduces monster spawns when placed nearby
 	}
+
+	SquirrelWings: {
+		DisplayName: Squirrel Wings
+		Tooltip: Allows flight and slow fall
+	}
 }
 
 NPCs: {

@@ -13,7 +13,7 @@ namespace Eventful.Weapons
             Item.height = 28;
 
             Item.DamageType = DamageClass.MeleeNoSpeed;
-            Item.damage = 22;
+            Item.damage = 24;
             Item.knockBack = 8;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);

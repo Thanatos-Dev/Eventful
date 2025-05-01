@@ -22,7 +22,7 @@ namespace Eventful.Buffs
         {
             player.buffTime[buffIndex] = 10; // reset buff time
 
-            if (Main.rand.NextBool(4))
+            if (Main.rand.NextBool(3))
             {
                 Dust.NewDust(player.position, player.width, player.height, DustID.Water, default, default, 150, default, 0.75f);
             }

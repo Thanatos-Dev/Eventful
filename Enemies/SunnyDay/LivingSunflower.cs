@@ -102,11 +102,11 @@ namespace Eventful.Enemies.SunnyDay
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunshineFragment>(), 1, 1, 2)); //100% drop rate, 1-2
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SunshineFragment>(), 2)); //50% drop rate
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WaterBalloon>(), 2, 5, 10)); //100% drop rate, 1-2
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WaterBalloon>(), 2, 5, 10)); //50% drop rate, 5-10
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bloomerang>(), 5)); //20% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Bloomerang>(), 10)); //10% drop rate
         }
     }
 }

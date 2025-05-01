@@ -149,7 +149,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.defense = 4;
             NPC.value = 50;
 
-            Banner = Mod.Find<ModItem>("MutantCentipedeBanner").Type;
+            Banner = Type;
+            Banner = ModContent.NPCType<MutantCentipedeHead>();
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
@@ -219,7 +220,8 @@ namespace Eventful.Enemies.BuriedBarrage
             NPC.defense = 6;
             NPC.value = 50;
 
-            Banner = Mod.Find<ModItem>("MutantCentipedeBanner").Type;
+            Banner = Type;
+            Banner = ModContent.NPCType<MutantCentipedeHead>();
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit31 with
