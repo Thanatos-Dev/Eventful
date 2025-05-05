@@ -1,8 +1,8 @@
-The Eventful mod adds more invasions & random events to the game to fill out certain points in progression or certain areas of the map!
+The Eventful mod adds more invasions & random events to fill out certain points in progression and certain areas of the map! The goal is to provide vanilla feeling content to give more variation to Terraria!
 
 Discord: https://discord.gg/kkMkqzdJ8c
 
-Content:
+- CONTENT -
 - ? Items
 - ? Weapons
 - ? Armor sets
@@ -12,10 +12,10 @@ Content:
 - ? Random events
 - ? Music tracks
 
-Credits:
-- Thanatos
-- Doc
-- Pil Works
-- Sprunolia
-- Dovahkick
-- CrimsonCB
+- CREDITS -
+Thanatos: Founder, programming, art, music
+Doc: Art, music
+Pil Works: Art
+Sprunolia: Art
+CrimsonCB: Art
+Dovahkick: Art

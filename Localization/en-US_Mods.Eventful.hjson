@@ -157,6 +157,16 @@ Items: {
 		DisplayName: Squirrel Wings
 		Tooltip: Allows flight and slow fall
 	}
+
+	Serpentine: {
+		DisplayName: Serpentine
+		Tooltip: ""
+	}
+
+	SunflowerSeeds: {
+		DisplayName: Sunflower Seeds
+		Tooltip: "'Making it to the major league'"
+	}
 }
 
 NPCs: {
@@ -199,6 +209,7 @@ Projectiles: {
 	WaterBalloonProjectile.DisplayName: Water Balloon Projectile
 	BeetleStaffProjectile.DisplayName: Beetle Staff Projectile
 	BloomerangProjectile.DisplayName: Bloomerang Projectile
+	SerpentineProjectile.DisplayName: Serpentine Projectile
 }
 
 Buffs: {

@@ -32,6 +32,8 @@ namespace Eventful.Enemies.BuriedBarrage
             { // Influences how the NPC looks in the Bestiary
                 CustomTexturePath = "Eventful/Enemies/BuriedBarrage/MutantCentipedeBestiary", // If the NPC is multiple parts like a worm, a custom texture for the Bestiary is encouraged.
                 Scale = 0.5f,
+                PortraitScale = 0.85f,
+                Position = new Vector2(0, 2.5f)
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }

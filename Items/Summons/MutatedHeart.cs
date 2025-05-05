@@ -1,9 +1,9 @@
 ﻿using Eventful.Invasions;
+using Eventful.Items.Miscellaneous;
 using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -14,7 +14,8 @@ namespace Eventful.Items.Summons
     {
         public override void SetStaticDefaults()
         {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            Item.ResearchUnlockCount = 3;
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
         }
 
         public override void SetDefaults()
@@ -29,6 +30,11 @@ namespace Eventful.Items.Summons
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.useTime = Item.useAnimation = 45;
             Item.UseSound = SoundID.Roar;
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
         }
 
         public override bool CanUseItem(Player player)
@@ -68,6 +74,14 @@ namespace Eventful.Items.Summons
             #endregion
 
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<MutatedFlesh>(15)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }

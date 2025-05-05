@@ -26,7 +26,7 @@ namespace Eventful.Weapons
             Item.autoReuse = false;
 
             Item.shoot = ModContent.ProjectileType<BloomerangProjectile>();
-            Item.shootSpeed = 11.25f;
+            Item.shootSpeed = 15;
             Item.UseSound = SoundID.Item1;
         }
 

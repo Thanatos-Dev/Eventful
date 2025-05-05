@@ -19,6 +19,6 @@ namespace Eventful.MusicManagers
             return false;
         }
 
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Music/Daybreak");
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Music/SunnyDayMusic");
     }
 }

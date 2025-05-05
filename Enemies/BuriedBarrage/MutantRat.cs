@@ -32,6 +32,7 @@ namespace Eventful.Enemies.BuriedBarrage
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             { // Influences how the NPC looks in the Bestiary
                 Scale = 0.75f,
+                Velocity = 2
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }

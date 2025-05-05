@@ -30,12 +30,19 @@ namespace Eventful.Enemies.BuriedBarrage
 
             NPCID.Sets.TrailCacheLength[NPC.type] = 6;
             NPCID.Sets.TrailingMode[NPC.type] = 0;
+
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            { // Influences how the NPC looks in the Bestiary
+                PortraitPositionYOverride = -35,
+                Position = new Vector2(0, -15)
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
 
         public override void SetDefaults()
         {
             NPC.width = 28;
-            NPC.height = 24;
+            NPC.height = 26;
             NPC.damage = 10;
             NPC.lifeMax = 25;
             NPC.defense = 3;

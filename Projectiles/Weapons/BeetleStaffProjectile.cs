@@ -31,7 +31,7 @@ namespace Eventful.Projectiles.Weapons
         public sealed override void SetDefaults()
         {
             Projectile.width = 28;
-            Projectile.height = 24;
+            Projectile.height = 26;
             Projectile.tileCollide = false;
 
             // These below are needed for a minion weapon

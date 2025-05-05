@@ -105,8 +105,8 @@ namespace Eventful.Invasions
         {
             if (BuriedBarrageInvasion.isActive == true && player.ZoneNormalCaverns == true)
             {
-                spawnRate = 85;
-                maxSpawns = 50;
+                spawnRate = 75;
+                maxSpawns = 100;
             }
         }
         
