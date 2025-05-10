@@ -2,6 +2,7 @@ The Eventful mod adds more invasions & random events to fill out certain points 
 
 Discord: discord.gg/kkMkqzdJ8c
 YouTube: youtube.com/@EventfulMod
+Wiki: (Coming Soon)
 
 - CONTENT -
 - 1 invasion
@@ -24,6 +25,6 @@ YouTube: youtube.com/@EventfulMod
 Thanatos: Creator, programming, art, music
 Doc: Art, music
 Pil Works: Art
-Sprunolia: Art
 CrimsonCB: Art
+Sprunolia: Art
 Dovahkick: Art
