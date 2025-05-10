@@ -54,7 +54,7 @@ namespace Eventful.Items.Summons
 
         public override bool? UseItem(Player player)
         {
-            BuriedBarrageInvasion.killsNeeded += 25 * (Main.player.Where(p => p.active).Count() - 1); //Adds 25 enemies for each player
+            BuriedBarrageInvasion.killsNeeded += 40 * Main.player.Where(p => p.active).Count(); //Adds 40 enemies for each player
 
             BuriedBarrageInvasion.isActive = true;
 

@@ -52,7 +52,8 @@ namespace Eventful.NPCs
                 .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate)
             ; // < Mind the semicolon!
         }
 
@@ -104,7 +105,7 @@ namespace Eventful.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            if (NPC.downedBoss1 || NPC.downedSlimeKing)
+            if (NPC.downedSlimeKing)
             {
                 return true;
             }
@@ -236,7 +237,7 @@ namespace Eventful.NPCs
         #region Attacking
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            damage = 5;
+            damage = 10;
             knockback = 5;
         }
 

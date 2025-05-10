@@ -38,8 +38,6 @@ namespace Eventful.Events
         public override void NetSend(BinaryWriter writer)
         {
             writer.Write(isActive);
-
-            NetMessage.SendData(MessageID.WorldData);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -51,7 +49,7 @@ namespace Eventful.Events
         public override void PreUpdateWorld()
         {
             #region Random Spawning
-            if (isActive == false && Main.dayTime == true && Main.time == 0)
+            if (isActive == false && Main.dayTime && Main.time == 0)
             {
                 isActive = Main.rand.NextBool(1, 10);
 
@@ -73,7 +71,7 @@ namespace Eventful.Events
                     #endregion
                 }
             }
-            else if (Main.dayTime == false)
+            else if (!Main.dayTime)
             {
                 isActive = false;
             }

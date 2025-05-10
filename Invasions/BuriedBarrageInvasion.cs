@@ -15,7 +15,7 @@ namespace Eventful.Invasions
         #region Variables
         public static bool isActive = false;
         public static int killCount = 0;
-        public static int killsNeeded = 75;
+        public static int killsNeeded = 120 - 40;
 
         public static List<int> invasionEnemies = new List<int>()
         {
@@ -28,12 +28,6 @@ namespace Eventful.Invasions
         #endregion
 
         #region World Data
-        public override void ClearWorld()
-        {
-            isActive = false;
-            killCount = 0;
-        }
-
         public override void SaveWorldData(TagCompound tag)
         {
             tag.Add("InvasionActive", isActive);
@@ -60,8 +54,6 @@ namespace Eventful.Invasions
         {
             writer.Write(killCount);
             writer.Write(isActive);
-
-            NetMessage.SendData(MessageID.WorldData);
         }
 
         public override void NetReceive(BinaryReader reader)

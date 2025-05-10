@@ -1,9 +1,7 @@
-﻿using Eventful.Dusts;
-using Eventful.Events;
+﻿using Eventful.Events;
 using Eventful.Items.Miscellaneous;
 using Eventful.Weapons;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -39,13 +37,13 @@ namespace Eventful.Enemies.SunnyDay
         {
             NPC.width = 40;
             NPC.height = 68;
-            NPC.damage = 12;
-            NPC.lifeMax = 45;
-            NPC.defense = 6;
+            NPC.damage = 8;
+            NPC.lifeMax = 50;
+            NPC.defense = 4;
             NPC.knockBackResist = 0.35f;
-            NPC.value = 50;
+            NPC.value = 100;
             NPC.aiStyle = NPCAIStyleID.Fighter;
-            AIType = NPCID.GoblinScout;
+            AIType = NPCID.ZombieMushroom;
 
             SpawnModBiomes = [ModContent.GetInstance<SunnyDayBiome>().Type];
 
@@ -89,6 +87,14 @@ namespace Eventful.Enemies.SunnyDay
             NPC.spriteDirection = -NPC.direction;
         }
 
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            #region Dust
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sunflower);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Grass);
+            #endregion
+        }
+
         public override void OnKill()
         {
             #region Gore
@@ -97,11 +103,10 @@ namespace Eventful.Enemies.SunnyDay
             #endregion
 
             #region Dust
-            for (int d = 0; d < 10; d++)
+            for (int d = 0; d < 5; d++)
             {
-                Dust.NewDust(NPC.position, 0, 0, DustID.Smoke, 0, 0, 235, Color.White, Main.rand.NextFloat(1.5f, 2));
-                Main.dust[d].velocity *= 0.025f;
-                Main.dust[d].noGravity = true;
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sunflower);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Grass);
             }
             #endregion
         }

@@ -193,14 +193,15 @@ NPCs: {
 			HateBiome: I hate not being able to experience the weather.
 			LoveNPC: When making my forecast devices, {NPCName} was such a good partner.
 			LikeNPC: I like how much {NPCName} appreciates the weather.
-			DislikeNPC: I think {NPCName} charges too much, I don't get paid enough for this!
-			HateNPC: I hate {NPCName}.
+			DislikeNPC: "{NPCName} doesn't like the weather, so I don't like him!"
+			HateNPC: I think {NPCName} charges too much, I don't get paid enough for this!
 			LikeNPC_Princess: I enjoy talking to {NPCName}, she reminds me of my daughter.
 			Princess_LovesNPC: I enjoy talking to {NPCName}, she reminds me of my daughter.
 		}
 	}
 
 	LivingSunflower.DisplayName: Living Sunflower
+	Snake.DisplayName: Snake
 }
 
 Projectiles: {

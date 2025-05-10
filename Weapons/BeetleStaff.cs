@@ -21,7 +21,7 @@ namespace Eventful.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 9;
+            Item.damage = 6;
             Item.knockBack = 3;
             Item.mana = 10; // mana cost
             Item.width = 32;
