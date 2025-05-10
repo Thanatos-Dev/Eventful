@@ -1,4 +1,4 @@
-# Eventful
+# Eventful v1.0
 The Eventful mod adds more invasions & random events to fill out certain points in progression and certain areas of the map! The goal is to provide vanilla feeling content to give more variation to Terraria!
 
 [Discord](discord.gg/kkMkqzdJ8c)
