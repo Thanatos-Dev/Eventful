@@ -1,7 +1,11 @@
 ﻿using Eventful.Buffs;
+using Eventful.Enemies.BuriedBarrage;
+using Eventful.Enemies.SunnyDay;
+using Eventful.Invasions;
 using Eventful.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.GameContent;
@@ -49,11 +53,11 @@ namespace Eventful.Events
         public override void PreUpdateWorld()
         {
             #region Random Spawning
-            if (isActive == false && Main.dayTime && Main.time == 0)
+            if (!isActive && Main.dayTime && Main.time == 0)
             {
                 isActive = Main.rand.NextBool(1, 10);
 
-                if (isActive == true)
+                if (isActive)
                 {
                     #region Chat Message
                     if (Main.netMode == NetmodeID.Server)
@@ -78,14 +82,14 @@ namespace Eventful.Events
             #endregion
             
             #region Heat Distortion
-            if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.ZoneOverworldHeight == true)
+            if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.ZoneOverworldHeight && !Main.LocalPlayer.ZoneSnow)
             {
-                if (isActive == true)
+                if (isActive)
                 {
-                    Filters.Scene["HeatDistortion"].GetShader().UseIntensity(2);
+                    Filters.Scene["HeatDistortion"].GetShader().UseIntensity(2.5f);
                     Filters.Scene.Activate("HeatDistortion");
                 }
-                else if (isActive == false)
+                else
                 {
                     Filters.Scene["HeatDistortion"].GetShader().UseIntensity(1);
                     Filters.Scene.Deactivate("HeatDistortion");
@@ -94,22 +98,22 @@ namespace Eventful.Events
             #endregion
 
             #region Sun Texture
-            if (isActive == true)
+            if (isActive)
             {
                 TextureAssets.Sun = TextureAssets.Sun2;
             }
-            else if (isActive == false)
+            else
             {
                 TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
             }
             #endregion
 
             #region Sweaty Debuff
-            if (isActive == true)
+            if (isActive)
             {
                 Main.LocalPlayer.AddBuff(ModContent.BuffType<Sweaty>(), 10);
             }
-            else if (isActive == false)
+            else
             {
                 Main.LocalPlayer.ClearBuff(ModContent.BuffType<Sweaty>());
             }
@@ -119,6 +123,21 @@ namespace Eventful.Events
         public override void Unload()
         {
             TextureAssets.Sun = Main.Assets.Request<Texture2D>("Images/Sun");
+        }
+    }
+
+    public class SunnyDaySpawns : GlobalNPC
+    {
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (SunnyDayEvent.isActive && spawnInfo.Player.ZoneForest)
+            {
+                #region Spawn Pool
+                pool.Add(ModContent.NPCType<LivingSunflower>(), 0.1f);
+                pool.Add(ModContent.NPCType<Snake>(), 0.1f);
+                //pool.Add(ModContent.NPCType<AngrySun>(), 10);
+                #endregion
+            }
         }
     }
 

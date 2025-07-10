@@ -160,12 +160,21 @@ Items: {
 
 	Serpentine: {
 		DisplayName: Serpentine
-		Tooltip: ""
+		Tooltip: "'How deliciously evil!'"
 	}
 
 	SunflowerSeeds: {
 		DisplayName: Sunflower Seeds
-		Tooltip: "'Making it to the major league'"
+		Tooltip:
+			'''
+			Medium improvements to all stats
+			'Making it to the major league!'
+			'''
+	}
+
+	SnakeBanner: {
+		DisplayName: Snake Banner
+		Tooltip: ""
 	}
 }
 

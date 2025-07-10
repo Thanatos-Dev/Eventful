@@ -8,10 +8,10 @@ namespace Eventful.MusicManagers
 {
     public class SunnyDayMusicManager : ModSceneEffect
     {
-        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow;
         public override bool IsSceneEffectActive(Player player)
         {
-            if (SunnyDayEvent.isActive == true && player.ZoneOverworldHeight == true)
+            if (SunnyDayEvent.isActive && player.ZoneForest)
             {
                 return true;
             }

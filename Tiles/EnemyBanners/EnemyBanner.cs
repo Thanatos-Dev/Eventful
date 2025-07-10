@@ -22,7 +22,8 @@ namespace Eventful.Tiles.EnemyBanners
             MutantMole,
             MutantMosquito,
             MutantRat,
-            LivingSunflower
+            LivingSunflower,
+            Snake
         }
     }
 

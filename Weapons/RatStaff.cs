@@ -14,7 +14,7 @@ namespace Eventful.Weapons
             Item.width = 42;
             Item.height = 46;
 
-            Item.mana = 30;
+            Item.mana = 20;
             Item.DamageType = DamageClass.Magic;
             Item.damage = 8;
             Item.knockBack = 0;

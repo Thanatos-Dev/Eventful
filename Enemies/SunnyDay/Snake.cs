@@ -75,8 +75,8 @@ namespace Eventful.Enemies.SunnyDay
 
             SpawnModBiomes = [ModContent.GetInstance<SunnyDayBiome>().Type];
 
-            //Banner = Type;
-            //BannerItem = Mod.Find<ModItem>("SnakeBanner").Type;
+            Banner = Type;
+            BannerItem = Mod.Find<ModItem>("SnakeBanner").Type;
 
             #region Audio pitch variance
             NPC.HitSound = SoundID.NPCHit23 with

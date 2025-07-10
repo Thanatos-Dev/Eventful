@@ -44,14 +44,17 @@ namespace Eventful.Items.Food
 
         public override void SetDefaults()
         {
+            int buffDuration = 10; // In minutes
+
             // DefaultToFood sets all of the food related item defaults such as the buff type, buff duration, use sound, and animation time.
-            Item.DefaultToFood(22, 22, BuffID.WellFed2, 36000);
+            Item.DefaultToFood(22, 22, BuffID.WellFed2, 60 * 60 * buffDuration);
+            Item.rare = ItemRarityID.Green;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<SunshineFragment>(5)
+                .AddIngredient<SunshineFragment>(2)
                 .AddTile(TileID.CookingPots)
                 .Register();
         }

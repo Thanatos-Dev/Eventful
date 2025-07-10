@@ -91,7 +91,7 @@ namespace Eventful.Invasions
         }
     }
 
-    public class BuriedBarrageSpawnRates : GlobalNPC
+    public class BuriedBarrageSpawns : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -110,13 +110,9 @@ namespace Eventful.Invasions
                 //Make all spawn chances equal 100
 
                 pool.Add(ModContent.NPCType<MutantMosquito>(), 22);
-
                 pool.Add(ModContent.NPCType<MutantCentipedeHead>(), 12);
-
                 pool.Add(ModContent.NPCType<MutantMole>(), 22);
-
                 pool.Add(ModContent.NPCType<MutantBeetle>(), 22);
-
                 pool.Add(ModContent.NPCType<MutantRat>(), 22);
                 #endregion
 
