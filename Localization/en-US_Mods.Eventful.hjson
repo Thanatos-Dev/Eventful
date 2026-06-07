@@ -35,7 +35,7 @@ Items: {
 	MutantHelmet: {
 		DisplayName: Mutant Helmet
 		Tooltip: ""
-		SetBonus: Grants immunity to Poison
+		SetBonus: Grants immunity to Poisoned
 	}
 
 	MutantBreastplate: {
@@ -90,7 +90,7 @@ Items: {
 
 	SunnyForecast: {
 		DisplayName: Sunny Forecast
-		Tooltip: Enables a sunny day
+		Tooltip: Enables a sunny day and disables the rain/thunderstorm
 	}
 
 	RatStaff: {
@@ -145,7 +145,7 @@ Items: {
 
 	Bloomerang: {
 		DisplayName: Bloomerang
-		Tooltip: ""
+		Tooltip: "'Crazy Dave would love this.'"
 	}
 
 	SunshineInABottleItem: {
@@ -176,6 +176,31 @@ Items: {
 		DisplayName: Snake Banner
 		Tooltip: ""
 	}
+
+	FrozenWaterBalloon: {
+		DisplayName: Frozen Water Balloon
+		Tooltip: "'And you froze it.'"
+	}
+
+	SunBeam: {
+		DisplayName: Sun Beam
+		Tooltip: ""
+	}
+
+	AngrySunBanner: {
+		DisplayName: Angry Sun Banner
+		Tooltip: ""
+	}
+
+	SunnyDayMusicBox: {
+		Tooltip: ""
+		DisplayName: Music Box (Sunny Day)
+	}
+
+	BuriedBarrageMusicBox: {
+		Tooltip: ""
+		DisplayName: Music Box (Buried Barrage)
+	}
 }
 
 NPCs: {
@@ -194,7 +219,7 @@ NPCs: {
 			Content: I'm pretty happy here!
 			NoHome: I need some shelter, preferably in the jungle.
 			FarFromHome: I gotta get back home before it rains!
-			LoveSpace: I can kick my feet back and enjoy the weather.
+			LoveSpace: Nice, plenty of privacy to tinker with new forecast devices!
 			DislikeCrowded: It's a little crammed for me around here.
 			HateCrowded: There's way too many people around!
 			LikeBiome: I love when it rains here in the jungle. It's like a real Rainforest Cafe!
@@ -207,10 +232,13 @@ NPCs: {
 			LikeNPC_Princess: I enjoy talking to {NPCName}, she reminds me of my daughter.
 			Princess_LovesNPC: I enjoy talking to {NPCName}, she reminds me of my daughter.
 		}
+
+		DeathMessage: The weatherman was slain...
 	}
 
 	LivingSunflower.DisplayName: Living Sunflower
 	Snake.DisplayName: Snake
+	AngrySun.DisplayName: Angry Sun
 }
 
 Projectiles: {
@@ -220,6 +248,10 @@ Projectiles: {
 	BeetleStaffProjectile.DisplayName: Beetle Staff Projectile
 	BloomerangProjectile.DisplayName: Bloomerang Projectile
 	SerpentineProjectile.DisplayName: Serpentine Projectile
+	FrozenWaterBalloonProjectile.DisplayName: Frozen Water Balloon Projectile
+	SunBeamProjectile.DisplayName: Sun Beam Projectile
+	SunBeamExplosion.DisplayName: Sun Beam Explosion
+	AngrySunProjectile.DisplayName: Angry Sun Projectile
 }
 
 Buffs: {
@@ -254,3 +286,34 @@ Biomes: {
 }
 
 Tiles.SunshineInABottle.MapEntry: Sunshine in a Bottle
+
+Dialogue: {
+	Weatherman: {
+		Normal1: I'm loving the weather today! Well, I do most days.
+		Normal2: The mechanic was a big help when making my forecast devices. I couldn't have done it without her!
+		Normal3: Have you seen me on the news? I got to keep the microphone!
+		Rain1: Make sure to grab an umbrella on your way out.
+		Rain2: Oh crap, where's my umbrella? I thought I left it right here!
+		WindyDay1: Today would be a great day to fly my kite!
+		WindyDay2: Watch out for slimes today, I saw one being carried by a balloon!
+		Thunderstorm1: Ah, I love the sounds of a thunderstorm.
+		Thunderstorm2: Get in here! It's storming hard!
+		SunnyDay1: It's so sunny today! Don't forget to use sunscreen.
+		SunnyDay2: I wouldn't wanna be a vampire today!
+		SlimeRain1: Never seen weather like this before.
+		SlimeRain2: How does this weather even make sense?
+		Underground1: I can't experience the weather down here!
+		Underground2: Is there another house for me on the surface? I don't wanna miss out on the weather.
+		Underworld1: Why am I all the way down here? Do you just hate me or something?
+		Underworld2: The temperatures down here are crazy!
+	}
+}
+
+Bestiary.Weatherman: The Weatherman used to be just a typical meteorologist and news anchor, but after working with the mechanic, he's learned to control the weather itself!
+
+BossChecklistIntegration: {
+	BuriedBarrageInvasion: {
+		EntryName: Buried Barrage
+		SpawnInfo: Summoned with a Mutated Heart in the caverns. Mutated Hearts can be found in gold chests underground.
+	}
+}

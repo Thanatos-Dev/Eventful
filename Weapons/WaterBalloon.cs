@@ -24,6 +24,7 @@ namespace Eventful.Weapons
             Item.value = Item.sellPrice(copper: 10);
             Item.maxStack = Item.CommonMaxStack;
 
+            Item.autoReuse = true;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 25;
             Item.useAnimation = 25;

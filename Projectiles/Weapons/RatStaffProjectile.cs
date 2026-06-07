@@ -34,11 +34,13 @@ namespace Eventful.Projectiles.Weapons
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 3600;
+            Projectile.timeLeft = 18000;
             Projectile.netImportant = true;
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
             Projectile.extraUpdates = 1;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 15;
         }
 
         public override void AI()

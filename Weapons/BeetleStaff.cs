@@ -23,10 +23,10 @@ namespace Eventful.Weapons
         {
             Item.damage = 6;
             Item.knockBack = 3;
-            Item.mana = 10; // mana cost
             Item.width = 32;
             Item.height = 32;
             Item.useTime = 36;
+            Item.autoReuse = true;
             Item.useAnimation = 36;
             Item.useStyle = ItemUseStyleID.Swing; // how the player's arm moves when using the item
             Item.value = Item.sellPrice(gold: 1, silver: 50);

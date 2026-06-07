@@ -13,7 +13,7 @@ namespace Eventful.Weapons
             Item.height = 28;
 
             Item.DamageType = DamageClass.MeleeNoSpeed;
-            Item.damage = 24;
+            Item.damage = 20;
             Item.knockBack = 8;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);
@@ -26,7 +26,7 @@ namespace Eventful.Weapons
             Item.autoReuse = false;
 
             Item.shoot = ModContent.ProjectileType<BloomerangProjectile>();
-            Item.shootSpeed = 15;
+            Item.shootSpeed = 12;
             Item.UseSound = SoundID.Item1;
         }
 

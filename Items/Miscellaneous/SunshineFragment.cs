@@ -12,7 +12,7 @@ namespace Eventful.Items.Miscellaneous
             Item.ResearchUnlockCount = 25;
 
             ItemID.Sets.ItemIconPulse[Type] = true;
-            ItemID.Sets.ItemNoGravity[Type] = true;
+            //ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()

@@ -10,7 +10,7 @@ namespace Eventful.MusicManagers
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
         public override bool IsSceneEffectActive(Player player)
         {
-            if (BuriedBarrageInvasion.isActive == true && player.ZoneNormalCaverns)
+            if (BuriedBarrageInvasion.isActive && (player.ZoneNormalCaverns || player.ZoneMarble || player.ZoneGranite || player.ZoneGemCave))
             {
                 return true;
             }
@@ -18,6 +18,6 @@ namespace Eventful.MusicManagers
             return false;
         }
 
-        public override int Music => MusicID.GoblinInvasion;
+        public override int Music => MusicLoader.GetMusicSlot(Mod, "Music/BuriedBarrageMusic");
     }
 }

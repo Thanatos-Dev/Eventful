@@ -18,7 +18,7 @@ namespace Eventful.Enemies.SunnyDay
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
-                new FlavorTextBestiaryInfoElement("Some sunflowers started sprouting to life in a different way")
+                new FlavorTextBestiaryInfoElement("Some sunflowers started sprouting to life in a different way.")
             });
         }
 

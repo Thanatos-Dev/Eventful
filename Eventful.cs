@@ -2,8 +2,11 @@ using Eventful.Invasions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Eventful
@@ -20,7 +23,7 @@ namespace Eventful
         public void DrawEventUI(SpriteBatch spriteBatch)
         {
             #region Buried Barrage
-            if (BuriedBarrageInvasion.isActive && Main.LocalPlayer.ZoneNormalCaverns)
+            if (BuriedBarrageInvasion.isActive && (Main.LocalPlayer.ZoneNormalCaverns == true || Main.LocalPlayer.ZoneMarble || Main.LocalPlayer.ZoneGranite || Main.LocalPlayer.ZoneGemCave))
             {
                 const float Scale = 1;
                 const float Alpha = 0.5f;

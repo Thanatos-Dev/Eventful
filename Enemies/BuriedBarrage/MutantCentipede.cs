@@ -76,37 +76,38 @@ namespace Eventful.Enemies.BuriedBarrage
             #endregion
         }
 
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            if (NPC.life <= 0)
+            {
+                #region Gore
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantCentipedeHeadGore").Type, NPC.scale);
+                #endregion
+
+                #region Dust
+                for (int d = 0; d < 15; d++)
+                {
+                    Dust.NewDust(NPC.position, 0, 0, DustID.Smoke, 0, 0, 235, Color.White, Main.rand.NextFloat(1.5f, 2));
+                }
+                #endregion
+            }
+        }
+
         public override void OnKill()
         {
-            #region Gore
-            Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, Mod.Find<ModGore>("MutantCentipedeHeadGore").Type, NPC.scale);
-            #endregion
+            BuriedBarrageInvasion.killCount++; //Counts up the invasion's kill count
 
-            #region Dust
-            for (int d = 0; d < 15; d++)
+            if (Main.netMode == NetmodeID.Server)
             {
-                Dust.NewDust(NPC.position, 0, 0, DustID.Smoke, 0, 0, 235, Color.White, Main.rand.NextFloat(1.5f, 2));
+                NetMessage.SendData(MessageID.WorldData); //Immediately inform clients of new world state.
             }
-            #endregion
-
-            #region Invasion
-            if (BuriedBarrageInvasion.isActive == true)
-            {
-                BuriedBarrageInvasion.killCount++; //Counts up the invasion's kill count
-
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetMessage.SendData(MessageID.WorldData); //Immediately inform clients of new world state.
-                }
-            }
-            #endregion
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 3)); //100% drop rate, 1-3
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CentipedeSnapper>(), 50)); //2% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CentipedeSnapper>(), 25)); //4% drop rate
         }
 
         public override void Init()

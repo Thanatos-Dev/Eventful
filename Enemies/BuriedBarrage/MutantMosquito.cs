@@ -138,9 +138,9 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 3)); //100% drop rate, 1-3
 
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 50)); //2% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MosquitoSack>(), 25)); //4% drop rate
         }
 
         public override void OnKill()

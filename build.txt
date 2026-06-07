@@ -1,4 +1,4 @@
 displayName = Eventful
 author = Thanatos
-version = 0.1
-homepage = https://discord.gg/kkMkqzdJ8c
+version = 1.0.2
+homepage = https://discord.gg/9SdjGzGxcW

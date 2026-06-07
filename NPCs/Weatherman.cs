@@ -18,6 +18,9 @@ namespace Eventful.NPCs
     {
         public const string ShopName = "Shop";
 
+        public static LocalizedText UpgradedText { get; private set; }
+        public override LocalizedText DeathMessage => this.GetLocalization("DeathMessage");
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 25; // The total amount of frames the NPC has
@@ -64,7 +67,7 @@ namespace Eventful.NPCs
             AnimationType = NPCID.Guide;
             NPC.width = 18;
             NPC.height = 40;
-            NPC.aiStyle = 7;
+            NPC.aiStyle = NPCAIStyleID.Passive;
             NPC.damage = 10;
             NPC.defense = 15;
             NPC.knockBackResist = 0.5f;
@@ -83,7 +86,7 @@ namespace Eventful.NPCs
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Jungle,
 
 				// Sets your NPC's flavor text in the bestiary.
-				new FlavorTextBestiaryInfoElement("The Weatherman used to be just a typical meteorologist and news anchor, but after working with the mechanic, he's learned to control the weather itself!"),
+                new FlavorTextBestiaryInfoElement("Mods.Eventful.Bestiary.Weatherman"),
             });
         }
 
@@ -153,57 +156,60 @@ namespace Eventful.NPCs
             WeightedRandom<string> chat = new();
 
             // Normal
-            chat.Add("I'm loving the weather today! Well, I do most days.");
-            chat.Add("The mechanic was a big help when making my forecast devices. I couldn't have done it without her!");
-            chat.Add("Have you seen me on the news? I got to keep the microphone!");
+            if (!Main.LocalPlayer.ZoneNormalCaverns && !Main.LocalPlayer.ZoneUnderworldHeight)
+            {
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Normal1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Normal2"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Normal3"));
+            }
 
             // During rain
             if (Main.raining)
             {
-                chat.Add("Make sure to grab an umbrella on your way out.");
-                chat.Add("Oh crap, where's my umbrella? I thought I left it right here!");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Rain1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Rain2"));
             }
 
             // During a windy day
             if (Main.IsItAHappyWindyDay)
             {
-                chat.Add("Today would be a great day to fly my kite!");
-                chat.Add("Watch out for slimes today, I saw one being carried by a balloon!");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.WindyDay1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.WindyDay2"));
             }
 
             // During a thunderstorm
             if (Main.IsItStorming)
             {
-                chat.Add("Ah, I love the sounds of a thunderstorm.");
-                chat.Add("Get in here! It's storming hard!");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Thunderstorm1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Thunderstorm2"));
             }
 
             // During a sunny day
-            if (SunnyDayEvent.isActive)
+            if (SunnyDayEvent.isActive && Main.LocalPlayer.ZoneOverworldHeight)
             {
-                chat.Add("It's so sunny today! Don't forget to use sunscreen.");
-                chat.Add("I wouldn't wanna be a vampire today!");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.SunnyDay1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.SunnyDay2"));
             }
 
             // During a slime rain
             if (Main.slimeRain)
             {
-                chat.Add("Never seen weather like this before.");
-                chat.Add("How does this weather even make sense?");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.SlimeRain1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.SlimeRain2"));
             }
 
             // When underground
-            if (Main.LocalPlayer.ZoneNormalUnderground)
+            if (Main.LocalPlayer.ZoneNormalCaverns)
             {
-                chat.Add("I can't experience the weather down here!");
-                chat.Add("Is there another house for me on the surface? I don't wanna miss out on the weather.");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Underground1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Underground2"));
             }
 
             // When in the underworld
             if (Main.LocalPlayer.ZoneUnderworldHeight)
             {
-                chat.Add("Why am I all the way down here? Do you just hate me or something?");
-                chat.Add("The temperatures down here are crazy!");
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Underworld1"));
+                chat.Add(Language.GetTextValue("Mods.Eventful.Dialogue.Weatherman.Underworld2"));
             }
 
             return chat;

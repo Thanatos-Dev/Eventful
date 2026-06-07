@@ -29,7 +29,7 @@ namespace Eventful.Items.WeatherToggles
             Item.holdStyle = ItemHoldStyleID.HoldFront;
             Item.useTime = Item.useAnimation = 30;
             Item.UseSound = SoundID.Item92;
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame)
@@ -50,6 +50,12 @@ namespace Eventful.Items.WeatherToggles
         public override bool? UseItem(Player player)
         {
             SunnyDayEvent.isActive = true;
+
+            if (Main.raining)
+            {
+                Main.raining = false;
+                Main.maxRaining = Main.cloudAlpha = 0;
+            }
 
             #region Chat Message
             if (Main.netMode == NetmodeID.Server)

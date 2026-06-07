@@ -10,11 +10,6 @@ namespace Eventful.Projectiles.Weapons
 {
     public class BeetleStaffProjectile : ModProjectile
     {
-        #region Variables
-        public static float insideTilesTimerMax = 30;
-        public static float insideTilesTimer = insideTilesTimerMax;
-        #endregion
-
         public override void SetStaticDefaults()
         {
             // Sets the amount of frames this minion has on its spritesheet
@@ -40,6 +35,8 @@ namespace Eventful.Projectiles.Weapons
             Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
             Projectile.minionSlots = 1f; // Amount of slots this minion occupies from the total minion slots available to the player (more on that later)
             Projectile.penetrate = -1; // Needed so the minion doesn't despawn on collision with enemies or tiles
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 15;
         }
 
         // Here you can decide if your minion breaks things like grass or pots
@@ -68,21 +65,6 @@ namespace Eventful.Projectiles.Weapons
             SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
             Visuals();
-
-            // Return if inside tiles too long
-            if (Collision.IsWorldPointSolid(Projectile.position, true))
-            {
-                insideTilesTimer--;
-
-                if (insideTilesTimer <= 0)
-                {
-                    // Return to player
-                }
-            }
-            else
-            {
-                insideTilesTimer = insideTilesTimerMax;
-            }
         }
 
         // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
@@ -192,7 +174,7 @@ namespace Eventful.Projectiles.Weapons
                         bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
                         // Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
                         // The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
-                        bool closeThroughWall = between < 100;
+                        bool closeThroughWall = between < 100f;
 
                         if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall))
                         {

@@ -35,7 +35,7 @@ namespace Eventful.Projectiles.Weapons
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Wet, 300);
+            target.AddBuff(BuffID.Wet, 60 * 5);
         }
 
         public override void OnKill(int timeLeft)

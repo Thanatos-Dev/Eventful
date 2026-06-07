@@ -135,9 +135,9 @@ namespace Eventful.Enemies.BuriedBarrage
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 2)); //100% drop rate, 1-2
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 200)); //0.5% drop rate
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RatStaff>(), 50)); //2% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MutatedFlesh>(), 1, 1, 3)); //100% drop rate, 1-3
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MouseEars>(), 100)); //1% drop rate
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RatStaff>(), 25)); //4% drop rate
         }
     }
 }

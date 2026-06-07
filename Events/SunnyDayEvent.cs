@@ -52,37 +52,35 @@ namespace Eventful.Events
 
         public override void PreUpdateWorld()
         {
-            #region Random Spawning
-            if (!isActive && Main.dayTime && Main.time == 0)
+            #region Enable/Disable Event
+            if (!isActive && Main.dayTime && Main.time == 0 && !Main.raining)
             {
-                isActive = Main.rand.NextBool(1, 10);
-
-                if (isActive)
+                if (Main.rand.NextBool(1, 5))
                 {
-                    #region Chat Message
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.WorldData); // Immediately inform clients of new world state.
+                    isActive = true;
+
                     string key = "It's a sunny day!";
-                    Color messageColor = new Color(50, 255, 130);
-                    if (Main.netMode == NetmodeID.Server) // Server
-                    {
-                        Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), messageColor);
-                    }
-                    else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    {
-                        Main.NewText(Language.GetTextValue(key), messageColor);
-                    }
-                    #endregion
+                    Color messageColor = new Color(175, 75, 255);
+                    Main.NewText(Language.GetTextValue(key), messageColor);
                 }
             }
             else if (!Main.dayTime)
             {
                 isActive = false;
             }
+
+            if (isActive && Main.raining)
+            {
+                isActive = false;
+
+                string key = "The sun has hidden behind the clouds!";
+                Color messageColor = new Color(175, 75, 255);
+                Main.NewText(Language.GetTextValue(key), messageColor);
+            }
             #endregion
             
             #region Heat Distortion
-            if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.ZoneOverworldHeight && !Main.LocalPlayer.ZoneSnow)
+            if (Main.LocalPlayer.ZoneOverworldHeight && !Main.LocalPlayer.ZoneSnow && Main.UseHeatDistortion)
             {
                 if (isActive)
                 {
@@ -109,9 +107,16 @@ namespace Eventful.Events
             #endregion
 
             #region Sweaty Debuff
-            if (isActive)
+            if (Main.LocalPlayer.ZoneOverworldHeight && !Main.LocalPlayer.ZoneSnow)
             {
-                Main.LocalPlayer.AddBuff(ModContent.BuffType<Sweaty>(), 10);
+                if (isActive)
+                {
+                    Main.LocalPlayer.AddBuff(ModContent.BuffType<Sweaty>(), 10);
+                }
+                else
+                {
+                    Main.LocalPlayer.ClearBuff(ModContent.BuffType<Sweaty>());
+                }
             }
             else
             {
@@ -135,7 +140,7 @@ namespace Eventful.Events
                 #region Spawn Pool
                 pool.Add(ModContent.NPCType<LivingSunflower>(), 0.1f);
                 pool.Add(ModContent.NPCType<Snake>(), 0.1f);
-                //pool.Add(ModContent.NPCType<AngrySun>(), 10);
+                pool.Add(ModContent.NPCType<AngrySun>(), 0.1f);
                 #endregion
             }
         }

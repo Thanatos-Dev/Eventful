@@ -46,7 +46,7 @@ namespace Eventful.Enemies.SunnyDay
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
-                new FlavorTextBestiaryInfoElement("An overgrown snake that loves snapping at Terrarians")
+                new FlavorTextBestiaryInfoElement("An overgrown snake that loves snapping at Terrarians.")
             });
         }
 
@@ -63,13 +63,13 @@ namespace Eventful.Enemies.SunnyDay
         
         public override void SetDefaults()
         {
-            NPC.width = 92 / 2;
+            NPC.width = (int)(92 / 2.5f);
             NPC.height = 28;
             NPC.damage = 11;
             NPC.lifeMax = 30;
             NPC.defense = 6;
             NPC.knockBackResist = 0.25f;
-            NPC.value = 200;
+            NPC.value = 150;
             NPC.aiStyle = NPCAIStyleID.Fighter;
             AIType = NPCID.ZombieMushroom;
 
@@ -191,11 +191,19 @@ namespace Eventful.Enemies.SunnyDay
                 NPC.velocity.X = -1.5f;
             }
 
-            NPC.spriteDirection = NPC.direction;
-            NPC.TargetClosest();
+            NPC.TargetClosest(false);
 
-            NPC.GravityMultiplier *= 100;
-            NPC.MaxFallSpeedMultiplier *= 0.5f;
+            if (NPC.velocity.X > 0.1f)
+            {
+                NPC.spriteDirection = NPC.direction;
+            }
+
+            if (Collision.TileCollision(NPC.position, NPC.velocity, NPC.width, NPC.height).X != 0)
+            {
+                NPC.GravityMultiplier *= 100;
+            }
+
+            NPC.MaxFallSpeedMultiplier *= 0.75f;
 
             bool canAttack = NPC.HasValidTarget &&
                 Main.netMode != NetmodeID.MultiplayerClient &&
@@ -224,7 +232,6 @@ namespace Eventful.Enemies.SunnyDay
             {
                 AI_State = (float)ActionState.Attack;
                 AI_Timer = attackCooldown;
-                NPC.netUpdate = true;
             }
 
             AI_Timer--;

@@ -16,7 +16,7 @@ namespace Eventful.Weapons
 
             Item.mana = 20;
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 8;
+            Item.damage = 7;
             Item.knockBack = 0;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1, silver: 50);
